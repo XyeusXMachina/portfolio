@@ -73,7 +73,6 @@ export default function Hero() {
             height={560}
             unoptimized
             className="h-auto w-full"
-            priority
           />
         </div>
       </motion.div>
