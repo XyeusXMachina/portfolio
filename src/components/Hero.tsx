@@ -1,19 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
+import DitheredPortrait from "./DitheredPortrait";
 import { profile, socials } from "@/data/site";
 import { ArrowRightIcon, DownloadIcon, GithubIcon, LinkedinIcon, MailIcon } from "./icons";
 
 export default function Hero() {
   return (
-    <section className="mx-auto grid max-w-6xl gap-12 px-6 pb-20 pt-16 md:grid-cols-2 md:items-center md:pt-24">
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
+    <section className="mx-auto grid max-w-6xl gap-14 px-6 py-[var(--space-section)] md:grid-cols-[1.2fr_1fr] md:items-center">
+      <Reveal>
+        <p className="eyebrow mb-8">AI / Computer Vision / Software Engineering</p>
         <p className="text-sm text-secondary">Hello, I&apos;m</p>
         <h1 className="mt-3 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
           {profile.nameLines.map((line) => (
@@ -28,16 +25,15 @@ export default function Hero() {
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Link
             href="/works"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
+            className="button button-primary"
           >
             View My Works <ArrowRightIcon />
           </Link>
-          <a
-            href={socials.cvUrl}
-            className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
-          >
-            Download CV <DownloadIcon />
-          </a>
+          {socials.cvUrl !== "#" ? (
+            <a href={socials.cvUrl} className="button button-secondary">Download CV <DownloadIcon /></a>
+          ) : (
+            <Link href="/contact" className="button button-secondary">Contact Me <MailIcon /></Link>
+          )}
         </div>
 
         <div className="mt-8 flex items-center gap-4 text-secondary">
@@ -57,25 +53,12 @@ export default function Hero() {
             </a>
           )}
         </div>
-      </motion.div>
+      </Reveal>
 
-      <motion.div
-        className="relative mx-auto w-full max-w-sm"
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-      >
-        <div className="overflow-hidden rounded-3xl ring-1 ring-accent/40">
-          <Image
-            src="/images/portrait.svg"
-            alt="Portrait of Xyrus Vincent L. Dominguez"
-            width={480}
-            height={560}
-            unoptimized
-            className="h-auto w-full"
-          />
-        </div>
-      </motion.div>
+      <Reveal delay={0.1} className="relative mx-auto w-full max-w-[400px] md:ml-auto">
+        <div aria-hidden="true" className="dither-texture absolute -right-3 -top-3 h-28 w-28 opacity-30" />
+        <DitheredPortrait src="/images/portrait-photo.jpg" alt={`Portrait of ${profile.name}`} />
+      </Reveal>
     </section>
   );
 }

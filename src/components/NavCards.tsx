@@ -20,9 +20,9 @@ export default function NavCards() {
             <Reveal key={card.key} delay={i * 0.06}>
               <Link
                 href={card.href}
-                className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-sm"
+                className="group flex h-full flex-col border-t border-border py-6 pr-5 transition-colors hover:border-primary"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-soft text-accent">
+                <span className="flex h-10 w-10 items-center text-secondary">
                   <Icon />
                 </span>
                 <h3 className="mt-4 text-lg font-semibold">{card.title}</h3>

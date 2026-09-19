@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import ProjectVisual from "@/components/ProjectVisual";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/site";
@@ -74,20 +74,14 @@ export default async function ProjectPage({
       </Reveal>
 
       <Reveal delay={0.05}>
-        <div className="relative mt-10 aspect-[8/5] w-full overflow-hidden rounded-2xl border border-border bg-accent-soft">
-          <Image
-            src={project.image}
-            alt={`${project.title} preview`}
-            fill
-            unoptimized
-            className="object-cover"
-          />
+        <div className="mt-10">
+          <ProjectVisual src={project.image} title={project.title} />
         </div>
       </Reveal>
 
       {project.recognition && (
         <Reveal delay={0.1}>
-          <div className="mt-8 rounded-2xl border border-accent/40 bg-accent-soft p-6">
+          <div className="editorial-panel mt-8">
             <p className="text-sm font-semibold text-accent">Recognition</p>
             <ul className="mt-2 space-y-1 text-sm text-primary">
               {project.recognition.map((r) => (

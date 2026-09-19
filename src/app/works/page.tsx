@@ -15,6 +15,7 @@ export default function WorksPage() {
     <div className="mx-auto max-w-6xl px-6 py-16">
       <Reveal>
         <SectionHeading
+          as="h1"
           eyebrow="Featured Projects"
           title="Selected Work"
           description="Research, engineering, and development projects across intelligent systems, AI, computer vision, edge computing, and software."

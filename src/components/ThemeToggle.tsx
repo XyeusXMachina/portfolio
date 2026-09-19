@@ -2,7 +2,9 @@
 
 function toggle() {
   const isDark = document.documentElement.classList.toggle("dark");
-  window.localStorage.setItem("theme", isDark ? "dark" : "light");
+  try {
+    window.localStorage.setItem("theme", isDark ? "dark" : "light");
+  } catch { /* Theme switching still works when storage is unavailable. */ }
 }
 
 export default function ThemeToggle() {
@@ -11,7 +13,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Toggle color theme"
-      className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-primary transition-colors hover:border-accent hover:text-accent"
+      className="flex h-11 w-11 items-center justify-center border border-border text-primary transition-colors hover:border-accent hover:text-accent"
     >
       <svg
         width="16"

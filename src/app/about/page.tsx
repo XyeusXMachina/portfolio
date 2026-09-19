@@ -22,7 +22,7 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-16">
       <Reveal>
-        <SectionHeading eyebrow="About Me" title="From intelligence to infrastructure" />
+        <SectionHeading as="h1" eyebrow="About Me" title="From intelligence to infrastructure" />
         <div className="mt-6 space-y-4 text-secondary">
           {profile.aboutParagraphs.map((p) => (
             <p key={p}>{p}</p>
@@ -37,7 +37,7 @@ export default function AboutPage() {
         <div className="mt-6 space-y-6">
           {experience.map((job, i) => (
             <Reveal key={job.role} delay={i * 0.05}>
-              <div className="rounded-2xl border border-border bg-surface p-6">
+              <div className="editorial-panel">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 className="text-base font-semibold">{job.role}</h3>
                   <span className="text-sm text-secondary">{job.period}</span>
@@ -77,7 +77,7 @@ export default function AboutPage() {
         <div className="mt-6 space-y-4">
           {education.map((ed, i) => (
             <Reveal key={ed.degree} delay={i * 0.05}>
-              <div className="rounded-2xl border border-border bg-surface p-6">
+              <div className="editorial-panel">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 className="text-base font-semibold">{ed.degree}</h3>
                   <span className="text-sm text-secondary">{ed.period}</span>
@@ -96,7 +96,7 @@ export default function AboutPage() {
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {awards.map((award, i) => (
             <Reveal key={award.title} delay={i * 0.05}>
-              <div className="h-full rounded-2xl border border-accent/40 bg-accent-soft p-6">
+              <div className="editorial-panel h-full">
                 <h3 className="text-base font-semibold text-accent">{award.title}</h3>
                 <p className="mt-2 text-sm text-primary">{award.description}</p>
                 <p className="mt-2 text-xs text-secondary">{award.org}</p>
@@ -113,7 +113,7 @@ export default function AboutPage() {
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {certifications.map((cert, i) => (
             <Reveal key={cert.title} delay={(i % 2) * 0.05}>
-              <div className="rounded-2xl border border-border bg-surface p-5">
+              <div className="editorial-panel">
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="text-sm font-semibold">{cert.title}</h3>
                   <span className="shrink-0 rounded-full bg-accent-soft px-2 py-0.5 text-[11px] font-medium text-accent">

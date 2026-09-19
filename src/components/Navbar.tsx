@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
@@ -16,6 +16,18 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const close = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButton.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
@@ -32,7 +44,8 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`text-sm transition-colors hover:text-accent ${
+                  aria-current={active ? "page" : undefined}
+                  className={`nav-link text-sm transition-colors hover:text-accent ${
                     active ? "text-accent" : "text-secondary"
                   }`}
                 >
@@ -48,8 +61,10 @@ export default function Navbar() {
         </div>
 
         <button
+          ref={menuButton}
+          aria-controls="mobile-menu"
           type="button"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-border md:hidden"
+          className="flex h-11 w-11 items-center justify-center border border-border md:hidden"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -61,14 +76,15 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-border px-6 py-4 md:hidden">
+        <div id="mobile-menu" className="border-t border-border px-6 py-4 md:hidden">
           <ul className="flex flex-col gap-4">
             {links.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="text-sm text-secondary transition-colors hover:text-accent"
+                  aria-current={(link.href === "/" ? pathname === "/" : pathname.startsWith(link.href)) ? "page" : undefined}
+                  className="nav-link min-h-11 text-sm text-secondary transition-colors hover:text-accent"
                 >
                   {link.label}
                 </Link>

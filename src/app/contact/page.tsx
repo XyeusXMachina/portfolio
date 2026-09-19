@@ -38,6 +38,7 @@ export default function ContactPage() {
     <div className="mx-auto max-w-3xl px-6 py-16 text-center">
       <Reveal>
         <SectionHeading
+          as="h1"
           align="center"
           eyebrow="Contact"
           title="Let's build something intelligent."
@@ -49,12 +50,12 @@ export default function ContactPage() {
         {links.map(({ key, label, value, href, icon: Icon }, i) => (
           <Reveal key={key} delay={i * 0.06}>
             <a
-              href={href ?? "#"}
+              href={href ?? undefined}
               target={key === "email" ? undefined : "_blank"}
               rel={key === "email" ? undefined : "noreferrer"}
               aria-disabled={!href}
-              className={`flex h-full flex-col items-center gap-3 rounded-2xl border border-border bg-surface p-6 transition-all ${
-                href ? "hover:-translate-y-1 hover:border-accent hover:shadow-sm" : "opacity-50"
+              className={`flex h-full flex-col items-center gap-3 border-t border-border py-6 transition-colors ${
+                href ? "hover:border-primary" : "text-secondary"
               }`}
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-soft text-accent">
@@ -70,12 +71,9 @@ export default function ContactPage() {
       </div>
 
       <Reveal delay={0.2}>
-        <a
-          href={socials.cvUrl}
-          className="mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
-        >
-          Download CV <DownloadIcon />
-        </a>
+        {socials.cvUrl !== "#" ? (
+          <a href={socials.cvUrl} className="button button-primary mt-10">Download CV <DownloadIcon /></a>
+        ) : <p className="mt-10 text-sm text-secondary">CV link not yet provided.</p>}
       </Reveal>
     </div>
   );

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ProjectVisual from "./ProjectVisual";
 import Link from "next/link";
 import type { Project } from "@/data/site";
 import Badge from "./Badge";
@@ -10,18 +10,10 @@ export default function ProjectCard({ project, index = 0 }: { project: Project; 
     <Reveal delay={index * 0.06} className="h-full">
       <Link
         href={`/works/${project.slug}`}
-        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-all hover:-translate-y-1 hover:border-accent hover:shadow-sm"
+        className="group flex h-full flex-col border-b border-border transition-colors hover:border-primary"
       >
-        <div className="relative aspect-[8/5] w-full overflow-hidden bg-accent-soft">
-          <Image
-            src={project.image}
-            alt={`${project.title} preview`}
-            fill
-            unoptimized
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
-        <div className="flex flex-1 flex-col p-6">
+        <ProjectVisual src={project.image} title={project.title} />
+        <div className="flex flex-1 flex-col py-6">
           <p className="text-xs font-semibold uppercase tracking-wide text-accent">
             {project.category}
           </p>

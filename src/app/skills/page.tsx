@@ -15,6 +15,7 @@ export default function SkillsPage() {
     <div className="mx-auto max-w-6xl px-6 py-16">
       <Reveal>
         <SectionHeading
+          as="h1"
           eyebrow="Skills"
           title="Across the intelligent systems stack"
           description="A combination of research, development, engineering, and systems skills grouped by domain rather than a single wall of logos."
@@ -24,7 +25,7 @@ export default function SkillsPage() {
       <div className="mt-12 grid gap-8 sm:grid-cols-2">
         {skillGroups.map((group, i) => (
           <Reveal key={group.title} delay={(i % 2) * 0.05}>
-            <div className="h-full rounded-2xl border border-border bg-surface p-6">
+            <div className="editorial-panel h-full">
               <h3 className="text-base font-semibold">{group.title}</h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {group.skills.map((skill) => (

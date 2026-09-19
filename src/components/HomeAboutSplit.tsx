@@ -11,7 +11,7 @@ export default function HomeAboutSplit() {
     <section className="border-t border-border bg-surface">
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2">
         <Reveal>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <p className="eyebrow mb-4">
             About Me
           </p>
           <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -28,7 +28,7 @@ export default function HomeAboutSplit() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <p className="eyebrow mb-4">
             Tech Stack
           </p>
           <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">

@@ -19,17 +19,14 @@ export default function ContactCTA() {
             {socials.email && (
               <a
                 href={`mailto:${socials.email}`}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
+                className="button button-primary max-w-full break-all"
               >
                 <MailIcon className="h-4 w-4" /> {socials.email}
               </a>
             )}
-            <a
-              href={socials.cvUrl}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
-            >
-              Download CV <DownloadIcon />
-            </a>
+            {socials.cvUrl !== "#" ? (
+              <a href={socials.cvUrl} className="button button-secondary">Download CV <DownloadIcon /></a>
+            ) : <span className="text-sm text-secondary">CV link not yet provided.</span>}
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-4 text-secondary">
